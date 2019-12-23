@@ -6,13 +6,6 @@ public class Company {
 
     public static Company company;
 
-    static Company getInstance(){
-        if (company==null){
-            company = new Company();
-        }
-        return company;
-    }
-
 
     public FixedWork[] getFixedWorks() {
         return fixedWorks;

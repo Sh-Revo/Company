@@ -85,11 +85,11 @@ public class Util implements FoundSalary{
         double day = scan.nextDouble();
         System.out.println("Введите количество часов: ");
         double time = scan.nextDouble();
-        System.out.println("Введите цену часа: ");
+        System.out.println("Введите ставку: ");
         double rate = scan.nextDouble();
-        HourWork[] tmp = Arrays.copyOf(Company.getInstance().getHourWorks(), Company.getInstance().getHourWorks().length + 1);
+        HourWork[] tmp = Arrays.copyOf(Company.company.getHourWorks(), Company.company.getHourWorks().length + 1);
         tmp[tmp.length - 1] = new HourWork(firstName, secondName, time, day, rate);
-        Company.getInstance().setHourWorks(tmp);
+        Company.company.setHourWorks(tmp);
     }
 
    /* private void addFixedWorker() {
@@ -107,15 +107,15 @@ public class Util implements FoundSalary{
 
 
     private String payment() {
-        double payment = calcSalary(Company.getInstance().getFixedWorks()) +
-               calcSalary(Company.getInstance().getHourWorks());
+        double payment = calcSalary(Company.company.getFixedWorks()) +
+               calcSalary(Company.company.getHourWorks());
         return "Затраты на зарплаты " + payment + " $";
     }
 
 
     private void showInfo() {
-        System.out.println( infoWorkers(Company.getInstance().getFixedWorks()));
-        System.out.println(infoWorkers(Company.getInstance().getHourWorks()));
+        System.out.println( infoWorkers(Company.company.getFixedWorks()));
+        System.out.println(infoWorkers(Company.company.getHourWorks()));
        // System.out.println(infoWorkers(Company.getInstance().getFreelanceWorker()));
 
     }
