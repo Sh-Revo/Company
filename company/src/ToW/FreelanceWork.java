@@ -1,18 +1,16 @@
 package ToW;
 
-public class HourWork extends Worker{
-    private double salary;
+public class FreelanceWork extends Worker{
+
     private double hours;
     private double rate;
-    private double days;
+    private double salary;
 
-
-    public HourWork(String name, String surName, double hours, double days, double rate) {
+    public FreelanceWork(String name, String surName, double hours, double rate) {
         super(name, surName);
         this.hours = hours;
-        this.days = days;
         this.rate = rate;
-        this.salary = days * hours * rate;
+        this.salary = rate*hours;
     }
 
     public double getHours() {
@@ -23,10 +21,6 @@ public class HourWork extends Worker{
         return rate;
     }
 
-    public double getDays() {
-        return days;
-    }
-
     @Override
     public double paySalary() {
         return salary;
@@ -34,12 +28,10 @@ public class HourWork extends Worker{
 
     @Override
     public String toString(){
-        return "Работник с почасовой зарплатой: "+
+        return "Работник Фрилансер: "+
                 "\nИмя: " + name +
                 "\nФамилия: " + surName +
                 "\nВремя: " + hours +
-                "\nДни: " + days +
-                "\nОклад: " + rate +
                 "\nЗарплата: " + salary;
     }
 }

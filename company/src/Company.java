@@ -4,6 +4,7 @@ public class Company {
     public static Company company;
     FixedWork [] fixedWorks;
     HourWork [] hourWorks;
+    FreelanceWork[] freelanceWorks;
 
      static Company company(){
         if (company == null){
@@ -24,6 +25,8 @@ public class Company {
         } else this.fixedWorks = new FixedWork[0];
     }
 
+
+
     public HourWork[] getHourWorks() {
          return hourWorks;
     }
@@ -34,5 +37,14 @@ public class Company {
         } else this.hourWorks = new HourWork[0];
     }
 
+    public FreelanceWork[] getFreelanceWorks() {
+        return freelanceWorks;
+    }
+
+    public void setFreelanceWorks(FreelanceWork[] freelanceWorks) {
+        if (freelanceWorks != null) {
+            this.freelanceWorks = freelanceWorks;
+        } else this.freelanceWorks = new FreelanceWork[0];
+    }
 
 }

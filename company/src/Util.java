@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 
-public class Util implements FoundSalary, Files, ReadFile, SaveFile {
+public class Util implements FoundSalary, ReadFile, SaveFile {
     {
         loadCompany();
     }
@@ -64,7 +64,7 @@ public class Util implements FoundSalary, Files, ReadFile, SaveFile {
                 break;
             }
             case 3: {
-                //addFreelance();
+                addFreelanceWorker();
                 repeet();
                 break;
             }
@@ -75,6 +75,20 @@ public class Util implements FoundSalary, Files, ReadFile, SaveFile {
         }
     }
     //добавление рабочих
+
+    private void addFixedWorker() {
+        scan.nextLine();
+        System.out.println("Введите имя сотрудника: ");
+        String firstName = scan.nextLine();
+        System.out.println("Введите фамилию: ");
+        String secondName = scan.nextLine();
+        System.out.println("Введите Зарплату: ");
+        double salary = scan.nextFloat();
+        FixedWork[] tmp = Arrays.copyOf(Company.company().getFixedWorks(), Company.company().getFixedWorks().length + 1);
+        tmp[tmp.length - 1] = new FixedWork(firstName, secondName, salary);
+        Company.company().setFixedWorks(tmp);
+    }
+
     private void addHoursWorker() {
         scan.nextLine();
         System.out.println("Введите имя сотрудника: ");
@@ -92,17 +106,21 @@ public class Util implements FoundSalary, Files, ReadFile, SaveFile {
         Company.company().setHourWorks(tmp);
     }
 
-    private void addFixedWorker() {
+
+
+    private void addFreelanceWorker() {
         scan.nextLine();
         System.out.println("Введите имя сотрудника: ");
         String firstName = scan.nextLine();
         System.out.println("Введите фамилию: ");
         String secondName = scan.nextLine();
-        System.out.println("Введите Зарплату: ");
-        double salary = scan.nextFloat();
-        FixedWork[] tmp = Arrays.copyOf(Company.company().getFixedWorks(), Company.company().getFixedWorks().length + 1);
-        tmp[tmp.length - 1] = new FixedWork(firstName, secondName, salary);
-        Company.company().setFixedWorks(tmp);
+        System.out.println("Введите количество часов: ");
+        double hours = scan.nextFloat();
+        System.out.println("Введите ставку: ");
+        double rate = scan.nextFloat();
+        FreelanceWork[] tmp = Arrays.copyOf(Company.company().getFreelanceWorks(), Company.company().getFreelanceWorks().length + 1);
+        tmp[tmp.length - 1] = new FreelanceWork(firstName, secondName, hours, rate);
+        Company.company().setFreelanceWorks(tmp);
     }
 
     //затраты
@@ -116,10 +134,10 @@ public class Util implements FoundSalary, Files, ReadFile, SaveFile {
     private void showInfo() {
         System.out.println( infoWorkers(Company.company().getFixedWorks()));
         System.out.println(infoWorkers(Company.company().getHourWorks()));
-       // System.out.println(infoWorkers(Company.getInstance().getFreelanceWorker()));
+        System.out.println(infoWorkers(Company.company().getFreelanceWorks()));
 
     }
-    
+
     //повтор
     private void repeet(){
         String yes = "y";
