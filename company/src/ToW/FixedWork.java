@@ -17,4 +17,12 @@ public class FixedWork extends Worker {
     public double paySalary() {
         return salary;
     }
+
+    @Override
+    public String toString(){
+        return "Работник с почасовой зарплатой: "+
+                "\nИмя: " + name +
+                "\nФамилия: " + surName +
+                "\nЗарплата: " + salary;
+    }
 }

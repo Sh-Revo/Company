@@ -1,10 +1,17 @@
 import ToW.*;
 
 public class Company {
+    public static Company company;
     FixedWork [] fixedWorks;
     HourWork [] hourWorks;
 
-    public static Company company;
+     static Company company(){
+        if (company == null){
+            company = new Company();
+        }
+
+        return company;
+    }
 
 
     public FixedWork[] getFixedWorks() {
@@ -18,7 +25,7 @@ public class Company {
     }
 
     public HourWork[] getHourWorks() {
-        return hourWorks;
+         return hourWorks;
     }
 
     public void setHourWorks(HourWork[] hourWorks) {
@@ -26,4 +33,6 @@ public class Company {
             this.hourWorks = hourWorks;
         } else this.hourWorks = new HourWork[0];
     }
+
+
 }
