@@ -33,11 +33,11 @@ public class Util implements FoundSalary, ReadFile, SaveFile {
                 repeet();
                 break;
             case 4:
-               // sorting(true);
+                sorting(true);
                 repeet();
                 break;
             case 5:
-               // sorting(false);
+                sorting(false);
                 repeet();
                 break;
             default: {
@@ -122,6 +122,65 @@ public class Util implements FoundSalary, ReadFile, SaveFile {
         tmp[tmp.length - 1] = new FreelanceWork(firstName, secondName, hours, rate);
         Company.company().setFreelanceWorks(tmp);
     }
+
+    //сортировка
+    private void sorting(boolean flag){
+        int numbOfPeople = Company.company().fixedWorks.length +
+                Company.company().hourWorks.length +
+                Company.company().freelanceWorks.length;
+        Worker[] workers = new Worker[numbOfPeople];
+        for (int i = 0, j = 0, k = 0, l = 0; i < workers.length; i++) {
+            if (i < Company.company().fixedWorks.length) {
+                workers[i] = Company.company().fixedWorks[j];
+                j++;
+            } else if (i < Company.company().fixedWorks.length + Company.company().hourWorks.length) {
+                workers[i] = Company.company().hourWorks[k];
+                k++;
+            } else {
+                workers[i] = Company.company().freelanceWorks[l];
+                l++;
+            }
+
+        }
+        int size = workers.length;
+        int x = size - 1;
+        boolean swap = true;
+        Worker temp;
+
+        while (swap) {
+            swap = false;
+
+            for (int i = x; i > size - 1 - x; i--) {
+                if (workers[i].paySalary() < workers[i - 1].paySalary()) {
+                    temp = workers[i];
+                    workers[i] = workers[i - 1];
+                    workers[i - 1] = temp;
+                    swap = true;
+                }
+            }
+            for (int i = size - x; i < x; i++) {
+                if (workers[i].paySalary() > workers[i + 1].paySalary()) {
+                    temp = workers[i];
+                    workers[i] = workers[i + 1];
+                    workers[i + 1] = temp;
+                    swap = true;
+                }
+            }
+            if (!swap) {
+                break;
+            }
+        }
+        if (flag) {
+            for (Worker w : workers) {
+                System.out.println(w.toString());
+            }
+        } else {
+            for (int i = workers.length - 1; i >= 0; i--) {
+                System.out.println(workers[i].toString());
+            }
+        }
+    }
+
 
     //затраты
     private String payment() {
